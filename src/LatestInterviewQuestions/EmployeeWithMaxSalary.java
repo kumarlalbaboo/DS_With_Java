@@ -10,17 +10,18 @@ public class EmployeeWithMaxSalary {
 
         // How to get the employee with the max salary from a list.
 
-//        List<Employee> empList = new ArrayList<>();
-//        empList.add(new Employee("Abhimanyu", "Male", "Development", 80000.00, 28));
-//        empList.add(new Employee("Alex", "Male", "Development",75000.00,  24));
-//        empList.add(new Employee("Emily", "Female", "Development",54444.00, 22));
-//        empList.add(new Employee("Steve", "Male", "HR", 90000.00,  26));
-//        empList.add(new Employee("Bob", "Male", "Development", 65000.00,  23));
-//
-//
-//        Optional<Employee>  employeeMaxSalary = empList.stream().max(Comparator.comparingDouble(Employee::getSalary));
-//
-//        employeeMaxSalary.ifPresent(System.out::println);
+        ArrayList<Employee> list = new ArrayList<>();
+
+        list.add(new Employee(101, "Lalbaboo", "Male", "IT", 70000.00, 36 ));
+        list.add(new Employee(102, "Abhimanyu", "Male", "HR", 50000.00, 86 ));
+        list.add(new Employee(103, "Simpi", "Female", "IT", 77000.00, 19 ));
+        list.add(new Employee(104, "Abhimanyu", "Male", "Account", 70000.00, 22 ));
+        list.add(new Employee(105, "Bharti", "Female", "HR", 98000.00, 56 ));
+
+
+        Optional<Employee>  employeeMaxSalary = list.stream().max(Comparator.comparingDouble(Employee::getSalary));
+
+        employeeMaxSalary.ifPresent(System.out::println);
     }
 
 }
