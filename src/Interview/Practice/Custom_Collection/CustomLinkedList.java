@@ -1,4 +1,4 @@
-package Interview.Practice.Collection;
+package Interview.Practice.Custom_Collection;
 
 public class CustomLinkedList<E> {
 
@@ -18,7 +18,9 @@ public class CustomLinkedList<E> {
             head = newNode;
         } else {
             Node temp = head;
-            while (temp.next != null) temp = temp.next;
+            while (temp.next != null) {
+                temp = temp.next;
+            }
             temp.next = newNode;
         }
         size++;

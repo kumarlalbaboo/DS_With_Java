@@ -1,4 +1,4 @@
-package Interview.Practice.Collection;
+package Interview.Practice.Custom_Collection;
 
 import java.util.ArrayList;
 
