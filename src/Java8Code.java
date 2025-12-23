@@ -23,37 +23,22 @@ public class Java8Code {
 
 
         //##. Find the employees who are getting the 2nd highest salary
-        List<Employee> secondHigSalEmp = list.stream().sorted(Comparator.comparingDouble(Employee::getSalary).reversed()).limit(2).skip(1).toList();
-        secondHigSalEmp.forEach(e-> System.out.println(e.getName()+" - "+e.getSalary()));
+
 
         //##. Find the employees who are getting the 3rd highest salary
-        List<Employee> thirdHig = list.stream().sorted(Comparator.comparingDouble(Employee::getSalary).reversed()).limit(3).skip(2).toList();
-        thirdHig.forEach(e-> System.out.println(e.getName()+" - "+e.getSalary()));
+
 
         //##. Find the employees who are getting the 3rd highest salary if multiple persons have the same salary
-        List<Double> topSalaries = list.stream().map(Employee::getSalary).distinct().sorted(Comparator.reverseOrder()).toList();
-
-        if(topSalaries.size() >= 3){
-            Double thirdHighestSalary = topSalaries.get(2);
-
-            List<Employee> res4 = list.stream().filter(e->e.getSalary().equals(thirdHighestSalary) ).toList();
-
-            res4.forEach(e-> System.out.println(e.getName()+" - "+e.getSalary()));
-        }
-
 
 
         System.out.println();
         //1. Sort employee based on salary
 
-
         System.out.println();
         //2. Sort employee based on name
 
-
         System.out.println();
         //3. Count the total number of employees
-
 
         System.out.println();
         //4. Count the total number of employees based on department/name.
@@ -149,6 +134,7 @@ public class Java8Code {
         //27. Find the first repeating character
 
 
+
         System.out.println();
         //28. Find first Non-Repeating character
 
@@ -169,7 +155,6 @@ public class Java8Code {
         System.out.println();
         //32. Find a duplicate element in string
 
-
         System.out.println();
         //33. Find a distinct element in string
 
@@ -186,7 +171,7 @@ public class Java8Code {
 
         System.out.println();
         //36. Write a program to find elements from arrays who start with 1.
-        int[] arr1 = {45, 11, 34, 15, 24};
+        Integer[] arr1 = {45, 11, 34, 15, 24};
 
 
         System.out.println();
