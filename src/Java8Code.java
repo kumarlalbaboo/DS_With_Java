@@ -23,12 +23,12 @@ public class Java8Code {
 
 
         //##. Find the employees who are getting the 2nd highest salary
-//        List<Employee> secondHigSalEmp = list.stream().sorted(Comparator.comparingDouble(Employee::getSalary).reversed()).limit(2).skip(1).toList();
-//        secondHigSalEmp.forEach(e-> System.out.println(e.getName()+" - "+e.getSalary()));
+        List<Employee> secondHigSalEmp = list.stream().sorted(Comparator.comparingDouble(Employee::getSalary).reversed()).limit(2).skip(1).toList();
+        secondHigSalEmp.forEach(e-> System.out.println(e.getName()+" - "+e.getSalary()));
 
         //##. Find the employees who are getting the 3rd highest salary
-//        List<Employee> thirdHig = list.stream().sorted(Comparator.comparingDouble(Employee::getSalary).reversed()).limit(3).skip(2).toList();
-//        thirdHig.forEach(e-> System.out.println(e.getName()+" - "+e.getSalary()));
+        List<Employee> thirdHig = list.stream().sorted(Comparator.comparingDouble(Employee::getSalary).reversed()).limit(3).skip(2).toList();
+        thirdHig.forEach(e-> System.out.println(e.getName()+" - "+e.getSalary()));
 
         //##. Find the employees who are getting the 3rd highest salary if multiple persons have the same salary
         List<Double> topSalaries = list.stream().map(Employee::getSalary).distinct().sorted(Comparator.reverseOrder()).toList();
