@@ -5,20 +5,16 @@ public class RemoveAllNumericSymbolFromString
 	public static void main(String[] args) 
 	{
 		String str1="deepak123kumar456";
-		String str2="";
-		for(int i=0;i<str1.length();i++)
+		StringBuilder sb = new StringBuilder();
+		for(int i=0; i<str1.length(); i++)
 		{
-			char ch=str1.charAt(i);
-			if(ch>=48&ch<=57)
-			{
-				
-			}
-			else
-			{
-				str2=str2+ch;
+			char ch = str1.charAt(i);
+
+			if(!Character.isDigit(ch)) {
+				sb.append(ch);
 			}
 		}
-		System.out.println(str2);
+		System.out.println(sb.toString());
 		
 	}
 

@@ -36,24 +36,14 @@ public class Java8CodePractice {
         thirdHighest.forEach(e-> System.out.println("Third highest salary getting: "+e.getName()+" and salary is: "+e.getSalary()));
 
         //##. Find the employees who are getting the 3rd highest salary if multiple persons have the same salary
-        List<Double> topSalaries = list.stream()
-                .map(Employee::getSalary)
-                .distinct()
-                .sorted(Comparator.reverseOrder())
-                .collect(Collectors.toList());
+        List<Double> topSalaries = list.stream().map(Employee::getSalary).distinct().sorted(Comparator.reverseOrder()).toList();
 
-        // Step 2: Get the 3rd highest salary
-        if (topSalaries.size() >= 3) {
-            double thirdHighestSalary = topSalaries.get(2);
+        if(topSalaries.size() >= 3){
+            Double thirdHighestSalary = topSalaries.get(2);
 
-            // Step 3: Get employees with that salary
-            List<Employee> result = list.stream()
-                    .filter(e -> e.getSalary() == thirdHighestSalary)
-                    .collect(Collectors.toList());
+            List<Employee> res4 = list.stream().filter(e->e.getSalary().equals(thirdHighestSalary) ).toList();
 
-            // Step 4: Print result
-            System.out.println("Employees with 3rd highest salary (" + thirdHighestSalary + "):");
-            result.forEach(e -> System.out.println(e.getName() + " - " + e.getSalary()));
+            res4.forEach(e-> System.out.println(e.getName()+" - "+e.getSalary()));
         }
 
         System.out.println();

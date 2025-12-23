@@ -6,7 +6,9 @@ public class FindTheReverseOfStringUsingReverseMethod
 	{
 		String str="deepak";
 		StringBuilder sb=new StringBuilder(str);
+
 		sb.reverse();
+
 		System.out.println(sb.toString());
 		
 	}
