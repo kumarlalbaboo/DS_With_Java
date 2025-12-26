@@ -4,6 +4,7 @@ import LatestInterviewQuestions.Employee;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 public class Java8Code {
@@ -18,6 +19,14 @@ public class Java8Code {
         list.add(new Employee(104, "Abhimanyu", "Male", "Account", 70000.00, 22 ));
         list.add(new Employee(105, "Bharti", "Female", "HR", 98000.00, 56 ));
 
+        //##. Write a code to move all zero elements to the end side using Java 8.
+        Integer[] arrays = {1,0,1,0,0,1,0,1};
+
+        Integer[] res = Arrays.stream(arrays).sorted((a,b)->a==0 ?1:-1).toArray(Integer[]::new);
+        System.out.println(Arrays.toString(res));
+
+        Integer[] resss = Stream.concat(Arrays.stream(arrays).filter(e->e != 0),Arrays.stream(arrays).filter(e->e == 0)).toArray(Integer[]::new);
+        System.out.println(Arrays.toString(resss));
 
         //##. Find the top 4 employees with the highest salary
 
