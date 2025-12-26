@@ -8,17 +8,27 @@ public class ProductOfArrayExceptSelf {
         int n = arr.length;
         int[] res = new int[n];
 
-        int prefix = 1;
-        for (int i=0; i<n; i++){
-           res[i] = prefix;
-           prefix *= arr[i];
+        for (int i = 0; i < n; i++) {
+            int product =  1;
+            for (int j = 0; j < n; j++) {
+                if(i != j){
+                    product *= arr[j];
+                }
+            }
+            res[i] = product;
         }
 
-        int suffix = 1;
-        for (int i=n-1; i>=0; i--){
-            res[i] *= suffix;
-            suffix *= arr[i];
-        }
+//        int prefix = 1;
+//        for (int i=0; i<n; i++){
+//           res[i] = prefix;
+//           prefix *= arr[i];
+//        }
+//
+//        int suffix = 1;
+//        for (int i=n-1; i>=0; i--){
+//            res[i] *= suffix;
+//            suffix *= arr[i];
+//        }
         //System.out.println("Product of array except self is "+ Arrays.toString(res));
         System.out.println("Product of array except self is: ");
         for (int i=0; i<n; i++){
