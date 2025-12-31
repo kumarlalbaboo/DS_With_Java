@@ -223,8 +223,16 @@ public class Java8CodePractice {
                 .entrySet().stream()
                 .filter(e->e.getValue() > 1)
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-
         duplicateElement.forEach((k,v)-> System.out.println(k+" - "+v));
+
+        List<String> collect = Arrays.stream(string.split(""))
+                .collect(Collectors.groupingBy(Function.identity(),
+                        LinkedHashMap::new, Collectors.counting()))
+                .entrySet().stream()
+                .filter(e -> e.getValue() > 1)
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
+        collect.forEach(e->System.out.print(e+" "));
 
         System.out.println();
         //31. Non-Duplicate element with count

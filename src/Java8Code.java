@@ -18,15 +18,14 @@ public class Java8Code {
         list.add(new Employee(104, "Abhimanyu", "Male", "Account", 70000.00, 22 ));
         list.add(new Employee(105, "Bharti", "Female", "HR", 98000.00, 56 ));
 
+
         //##. Write a code to move all zero elements to the end side using Java 8.
         Integer[] arrays = {1,0,1,0,0,1,0,1};
-
 
         //##. Find the top 4 employees with the highest salary
 
 
         //##. Find the employees who are getting the 2nd highest salary
-
 
         //##. Find the employees who are getting the 3rd highest salary
 
@@ -37,15 +36,18 @@ public class Java8Code {
         System.out.println();
         //1. Sort employee based on salary
 
+
+
         System.out.println();
         //2. Sort employee based on name
 
         System.out.println();
         //3. Count the total number of employees
+        Long count4 = list.stream().count();
+
 
         System.out.println();
         //4. Count the total number of employees based on department/name.
-
 
         System.out.println();
         //5. Concatenate two lists using flatmap
@@ -132,10 +134,8 @@ public class Java8Code {
         //26. Find the occurrences of each character in string
         String string = "abcdca";
 
-
         System.out.println();
         //27. Find the first repeating character
-
 
 
         System.out.println();

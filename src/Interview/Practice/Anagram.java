@@ -1,4 +1,4 @@
-// String str = "listen"; silent
+package Interview.Practice;// String str = "listen"; silent
 
 import java.util.HashMap;
 
@@ -17,7 +17,7 @@ public class Anagram {
         }
         for(char c: str2.toCharArray()){
             if(!map.containsKey(c)){
-                System.out.println("Not anagram");
+                System.out.println("Not Anagram");
             }
             map.put(c, map.get(c)-1);
             if(map.get(c)== 0){
