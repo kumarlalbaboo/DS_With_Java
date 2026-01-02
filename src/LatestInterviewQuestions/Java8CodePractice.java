@@ -18,6 +18,11 @@ public class Java8CodePractice {
         list.add(new Employee(104, "Abhimanyu", "Male", "Account", 70000.00, 22 ));
         list.add(new Employee(105, "Bharti", "Female", "HR", 98000.00, 56 ));
 
+        // ## Remove duplicates from an array.
+        Integer[] arr5 = {1, 2, 3, 2, 4, 1, 5};
+        Integer[] array5 = Arrays.stream(arr5).distinct().toArray(Integer[]::new);
+        System.out.println(Arrays.toString(array5));
+
         //##. Write a code to move all zero elements to the end side using Java 8.
         Integer[] arrays = {1,0,1,0,0,1,0,1};
 
