@@ -262,12 +262,14 @@ public class Java8CodePractice {
 
         System.out.println();
         //32. Find a duplicate element in string
-        List<String> duplicateElement1 = Arrays.stream(string.split("")).map(String::toLowerCase)
-                .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
+        List<String> duplicateElement1 = Arrays.stream(string.split("")).collect(Collectors.groupingBy(
+                        Function.identity(), LinkedHashMap::new, Collectors.counting()))
                 .entrySet().stream()
-                .filter(e->e.getValue() > 1)
+                .filter(e -> e.getValue() > 1)
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
+        collect.forEach(k->System.out.print(k+" "));
+        System.out.println();
         System.out.println("Duplicate element in string: "+duplicateElement1);
 
         System.out.println();

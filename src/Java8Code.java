@@ -18,6 +18,8 @@ public class Java8Code {
         list.add(new Employee(104, "Abhimanyu", "Male", "Account", 70000.00, 22 ));
         list.add(new Employee(105, "Bharti", "Female", "HR", 98000.00, 56 ));
 
+        Integer[] arr4 = {14, 90, 10, 25, 100, 5};
+        Arrays.stream(arr4).sorted().forEach(System.out::println);
 
         // ## Remove duplicates from an array.
         Integer[] arr5 = {1, 2, 3, 2, 4, 1, 5};
@@ -166,6 +168,7 @@ public class Java8Code {
         System.out.println();
         //32. Find a duplicate element in string
 
+
         System.out.println();
         //33. Find a distinct element in string
 
@@ -173,7 +176,6 @@ public class Java8Code {
         System.out.println();
         //34. Find the longest string in a String array     //reduce() function is a terminal operation in streams used to combine elements into a single result.
         String[] stringArray = {"Java", "SpringBoot", "Microservices", "Spring", "Hibernate"};
-
 
         System.out.println();
         //35. Find the smallest string in a String array
