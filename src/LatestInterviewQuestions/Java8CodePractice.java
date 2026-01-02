@@ -18,6 +18,18 @@ public class Java8CodePractice {
         list.add(new Employee(104, "Abhimanyu", "Male", "Account", 70000.00, 22 ));
         list.add(new Employee(105, "Bharti", "Female", "HR", 98000.00, 56 ));
 
+        //##. Write a code to move all zero elements to the end side using Java 8.
+        Integer[] arrays = {1,0,1,0,0,1,0,1};
+
+        Integer[] array1 = Arrays.stream(arrays).sorted((a, b) -> a == 0 ? 1 : -1).toArray(Integer[]::new);
+        System.out.println(Arrays.toString(array1));
+
+        Integer[] resss = Stream.concat(Arrays.stream(arrays).filter(e->e != 0),Arrays.stream(arrays).filter(e->e == 0)).toArray(Integer[]::new);
+        System.out.println(Arrays.toString(resss));
+
+        //##. Find the employee with the highest salary
+        Optional<Employee>  employeeMaxSalary = list.stream().max(Comparator.comparingDouble(Employee::getSalary));
+        employeeMaxSalary.ifPresent(System.out::println);
 
         //##. Find the top 4 employees with the highest salary
         List<Employee> top4 = list.stream().sorted(Comparator.comparingDouble(Employee::getSalary).reversed())
