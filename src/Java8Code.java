@@ -3,6 +3,7 @@ import LatestInterviewQuestions.Employee;
 
 import java.util.*;
 import java.util.function.Function;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -18,8 +19,6 @@ public class Java8Code {
         list.add(new Employee(104, "Abhimanyu", "Male", "Account", 70000.00, 22 ));
         list.add(new Employee(105, "Bharti", "Female", "HR", 98000.00, 56 ));
 
-        Integer[] arr4 = {14, 90, 10, 25, 100, 5};
-        Arrays.stream(arr4).sorted().forEach(System.out::println);
 
         // ## Remove duplicates from an array.
         Integer[] arr5 = {1, 2, 3, 2, 4, 1, 5};
@@ -27,6 +26,8 @@ public class Java8Code {
 
         //##. Write a code to move all zero elements to the end side using Java 8.
         Integer[] arrays = {1,0,1,0,0,1,0,1};
+
+        //##. Find the employee with the highest salary
 
 
         //##. Find the top 4 employees with the highest salary
@@ -45,13 +46,12 @@ public class Java8Code {
         //1. Sort employee based on salary
 
 
-
         System.out.println();
         //2. Sort employee based on name
 
+
         System.out.println();
         //3. Count the total number of employees
-        Long count4 = list.stream().count();
 
 
         System.out.println();
@@ -64,12 +64,13 @@ public class Java8Code {
         List<Integer> list2 = Arrays.asList(6,7,8,9);
 
 
-
         System.out.println();
         //6. Find avg,max,min,sum,count salary of employee
 
+
         System.out.println();
         //7. Find the name of all employee
+
 
         System.out.println();
         //8. Find the distinct name of employee
@@ -90,6 +91,7 @@ public class Java8Code {
         System.out.println();
         //12. Sum of square of only even number
 
+
         System.out.println();
         //13. Display name start with 'S'
 
@@ -97,9 +99,11 @@ public class Java8Code {
         System.out.println();
         //14. Display name starts with 'A' and the age is greater than 40
 
+
         System.out.println();
         //15. Sort the array value and print in ascending order
-        int[] array = {33,86,23,65,50};
+        Integer[] array = {33,86,23,65,50};
+
 
         System.out.println();
         //16. Sort the array value print in descending order

@@ -29,7 +29,8 @@ public class Java8CodePractice {
         Integer[] array1 = Arrays.stream(arrays).sorted((a, b) -> a == 0 ? 1 : -1).toArray(Integer[]::new);
         System.out.println(Arrays.toString(array1));
 
-        Integer[] resss = Stream.concat(Arrays.stream(arrays).filter(e->e != 0),Arrays.stream(arrays).filter(e->e == 0)).toArray(Integer[]::new);
+        Integer[] resss = Stream.concat(Arrays.stream(arrays).filter(e->e != 0),
+                Arrays.stream(arrays).filter(e->e == 0)).toArray(Integer[]::new);
         System.out.println(Arrays.toString(resss));
 
         //##. Find the employee with the highest salary
@@ -127,6 +128,11 @@ public class Java8CodePractice {
         int[] arr = {1,2,3,4,5,6};
         int sumOfSquare = Arrays.stream(arr).map(e->e*e).sum();
         System.out.println("Sum of square of array number: "+sumOfSquare);
+
+        Integer[] arr7 = {1, 2, 3, 4, 5, 6};
+        int sumOfSquares = Arrays.stream(arr7).mapToInt(a -> a * a).sum();
+        // sum() works only on primitive streams
+        //mapToInt() converts Integer → int
 
         System.out.println();
         //12. Sum of square of only even number
