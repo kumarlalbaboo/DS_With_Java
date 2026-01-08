@@ -151,143 +151,122 @@ public class Java8CodePractice {
 
         System.out.println();
         //15. Sort the array value and print in ascending order
-        int[] array = {33,86,23,65,50};
+        Integer[] array = {33,86,23,65,50};
         Arrays.stream(array).sorted().forEach(e-> System.out.print(e+" "));
 
         System.out.println();
         //16. Sort the array value print in descending order
-        Arrays.stream(array).boxed()  // boxed is used to int[] array to Integer[] array,
-                .sorted(Collections.reverseOrder())       //otherwise create Integer[] array.
-                .forEach(n -> System.out.print(n + " "));
+        Arrays.stream(array).sorted(Comparator.reverseOrder()).forEach(e-> System.out.print(e+" "));
 
         System.out.println();
         //17. Find max value in arrays
-        int max = Arrays.stream(array).max().getAsInt(); //if you are sure array is non-empty
-        System.out.println("Maximum value: "+max);
+        Optional<Integer> max = Arrays.stream(array).max(Integer::compareTo);
+        max.ifPresent(m-> System.out.print("Maximum value: "+m));
 
         System.out.println();
         //18. Find min value in arrays
-        int min = Arrays.stream(array).min().orElseThrow(); //if you are not sure array is empty or not
-        System.out.println("Minimum value: "+min);
+        Optional<Integer> min = Arrays.stream(array).min(Integer::compareTo);
+        min.ifPresent(m-> System.out.print("Minimum value: "+m));
 
         System.out.println();
         //19. To find the First maximum number
-        int findFirstMax = Arrays.stream(array).boxed().sorted(Collections.reverseOrder()).findFirst().get();
-        System.out.println("Find 1st maximum number: "+findFirstMax);
+        Optional<Integer> first = Arrays.stream(array).sorted(Comparator.reverseOrder()).findFirst();
+        first.ifPresent(f-> System.out.print("First maximum value: "+f));
 
         System.out.println();
         //20. To find second maximum number
-        int findSecondMax = Arrays.stream(array).boxed().sorted(Collections.reverseOrder()).skip(1).findFirst().get();
-        System.out.println("Find 1st maximum number: "+findSecondMax);
-
+        Optional<Integer> secondMax = Arrays.stream(array).sorted(Comparator.reverseOrder()).limit(2).skip(1).findFirst();
+        secondMax.ifPresent(f-> System.out.print("Second maximum value: "+f));
 
         System.out.println();
         //21. To find third maximum number
-        int findThirdMax = Arrays.stream(array).boxed().sorted(Collections.reverseOrder()).skip(2).findFirst().get();
-        System.out.println("Find 1st maximum number: "+findThirdMax);
+        Optional<Integer> thirdMax = Arrays.stream(array).sorted(Comparator.reverseOrder()).limit(3).skip(2).findFirst();
+        thirdMax.ifPresent(fo-> System.out.print("Third maximum value: "+fo));
 
         System.out.println();
         //22. Find the first minimum number in arrays
-        int firstMinimum = Arrays.stream(array).sorted().findFirst().orElseThrow();
-        System.out.println("First minimum number in arrays: "+firstMinimum);
+        Optional<Integer> firstMin = Arrays.stream(array).sorted().findFirst();
+        firstMin.ifPresent(fo-> System.out.print("First minimum value: "+fo));
 
         System.out.println();
         //23. Find the second minimum number in arrays
-        int secondMinimum = Arrays.stream(array).sorted().skip(1).findFirst().orElseThrow();
-        System.out.println("Second minimum number in arrays: "+secondMinimum);
+        Optional<Integer> secondMin = Arrays.stream(array).sorted().skip(1).findFirst();
+        secondMin.ifPresent(fo-> System.out.print("Second minimum value: "+fo));
 
         System.out.println();
         //24. Find the third minimum number in arrays
-        int thirdMinimum = Arrays.stream(array).sorted().skip(2).findFirst().orElseThrow();
-        System.out.println("Third minimum number in arrays: "+thirdMinimum);
+        Optional<Integer> thirdMin = Arrays.stream(array).sorted().skip(2).findFirst();
+        thirdMin.ifPresent(fo-> System.out.print("Third minimum value: "+fo));
 
         System.out.println();
         //25. Find a name whose length is greater than 5.
-        list.stream().map(Employee::getName)
-                .filter(name -> name.length() > 5).collect(Collectors.toList())
-                .forEach(System.out::println);
+        List<String> list3 = list.stream().map(Employee::getName).filter(e -> e.length() > 5).toList();
+        list3.forEach(System.out::println);
 
         System.out.println();
         //26. Find the occurrences of each character in string
         String string = "abcdca";
-        Map<String, Long> occurances = Arrays.stream(string.split("")).map(String::toLowerCase)
-                .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()));
-        System.out.println(occurances);
-        occurances.forEach((k,v) -> System.out.println(k+" - "+v));
+        LinkedHashMap<String, Long> collect = Arrays.stream(string.split("")).collect(Collectors.groupingBy(
+                Function.identity(), LinkedHashMap::new, Collectors.counting()));
+        collect.forEach((k,v) -> System.out.println(k+" : "+v));
+
 
         System.out.println();
         //27. Find the first repeating character
-        String firstRepeating = Arrays.stream(string.split("")).map(String::toLowerCase)
+        String key = Arrays.stream(string.split(""))
                 .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
-                .entrySet().stream().filter(e->e.getValue() > 1)
-                .findFirst().orElseThrow().getKey();
-        System.out.println("First repeating character: "+firstRepeating);
+                .entrySet().stream()
+                .filter(e -> e.getValue() > 1).findFirst()
+                .orElseThrow().getKey();
+        System.out.println(key);
 
         System.out.println();
         //28. Find first Non-Repeating character
-        String firstNonRepeating = Arrays.stream(string.split("")).map(String::toLowerCase)
+        String key1 = Arrays.stream(string.split(""))
                 .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
                 .entrySet().stream()
-                .filter(e->e.getValue() == 1)
-                .findFirst().orElseThrow().getKey();
-        System.out.println("First Non-Repeating character: "+firstNonRepeating);
+                .filter(e -> e.getValue() == 1).findFirst()
+                .orElseThrow().getKey();
+        System.out.println(key1);
 
         System.out.println();
         //29. Find the occurrences of each word
         String[] word = {"radha", "shayam", "radha", "shayam", "lalbaboo", "abhimanyu" };
-        Map<String, Long> wordOccure = Arrays.stream(word).map(String::toLowerCase)
+        LinkedHashMap<String, Long> collect1 = Arrays.stream(word)
                 .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()));
-        wordOccure.forEach((k,v)-> System.out.println(k+" - "+v));
+        collect1.forEach((k,v) -> System.out.println(k+" : "+v));
 
         System.out.println();
         //30. Display a duplicate element with count
-        Map<String, Long> duplicateElement = Arrays.stream(string.split("")).map(String::toLowerCase)
+        Map<String, Long> collect2 = Arrays.stream(string.split(""))
                 .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
                 .entrySet().stream()
-                .filter(e->e.getValue() > 1)
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-        duplicateElement.forEach((k,v)-> System.out.println(k+" - "+v));
-
-        List<String> collect = Arrays.stream(string.split(""))
-                .collect(Collectors.groupingBy(Function.identity(),
-                        LinkedHashMap::new, Collectors.counting()))
-                .entrySet().stream()
                 .filter(e -> e.getValue() > 1)
-                .map(Map.Entry::getKey)
-                .collect(Collectors.toList());
-        collect.forEach(e->System.out.print(e+" "));
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        collect2.forEach((k,v) -> System.out.println(k+" : "+v));
+
 
         System.out.println();
         //31. Non-Duplicate element with count
-        Map<String, Long> nonDuplicate = Arrays.stream(string.split("")).map(String::toLowerCase)
-                .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
+        Map<String, Long> collect3 = Arrays.stream(string.split(""))
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
                 .entrySet().stream()
-                .filter(e->e.getValue() == 1)
+                .filter(e -> e.getValue() == 1)
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-        nonDuplicate.forEach((k,v)-> System.out.println(k+" - "+v));
+        collect3.forEach((k,v) -> System.out.println(k+" : "+v));
 
         System.out.println();
         //32. Find a duplicate element in string
-        List<String> duplicateElement1 = Arrays.stream(string.split("")).collect(Collectors.groupingBy(
-                        Function.identity(), LinkedHashMap::new, Collectors.counting()))
+        List<String> collect4 = Arrays.stream(string.split(""))
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
                 .entrySet().stream()
                 .filter(e -> e.getValue() > 1)
-                .map(Map.Entry::getKey)
-                .collect(Collectors.toList());
-        collect.forEach(k->System.out.print(k+" "));
-        System.out.println();
-        System.out.println("Duplicate element in string: "+duplicateElement1);
+                .map(Map.Entry::getKey).toList();
+        collect4.forEach(e-> System.out.print(e+" "));
 
         System.out.println();
         //33. Find a distinct element in string
-        List<String> distinctElement = Arrays.stream(string.split("")).map(String::toLowerCase)
-                .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
-                .entrySet().stream()
-                .filter(e->e.getValue() == 1)
-                .map(Map.Entry::getKey)
-                .collect(Collectors.toList());
-        System.out.println("Distinct element in string: "+distinctElement);
-
+        Arrays.stream(string.split("")).distinct().forEach(e-> System.out.print(e+" "));
 
         System.out.println();
         //34. Find the longest string in a String array     //reduce() function is a terminal operation in streams used to combine elements into a single result.
@@ -304,8 +283,8 @@ public class Java8CodePractice {
 
         System.out.println();
         //36. Write a program to find elements from arrays who start with 1.
-        int[] arr1 = {45, 11, 34, 15, 24};
-        Arrays.stream(arr1).boxed().map(s->s+"").filter(a->a.startsWith("1")).forEach(System.out::println);
+        Integer[] arr1 = {45, 11, 34, 15, 24};
+        Arrays.stream(arr1).map(s->s+"").filter(a->a.startsWith("1")).forEach(System.out::println);
 
         System.out.println();
         //37. String joiner example

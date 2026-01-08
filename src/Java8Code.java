@@ -1,9 +1,7 @@
-
 import LatestInterviewQuestions.Employee;
 
 import java.util.*;
 import java.util.function.Function;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -13,7 +11,7 @@ public class Java8Code {
 
         ArrayList<Employee> list = new ArrayList<>();
 
-        list.add(new Employee(101, "Lalbaboo", "Male", "IT", 70000.00, 36 ));
+        list.add(new Employee(101, "Lalu", "Male", "IT", 70000.00, 36 ));
         list.add(new Employee(102, "Abhimanyu", "Male", "HR", 50000.00, 86 ));
         list.add(new Employee(103, "Simpi", "Female", "IT", 77000.00, 19 ));
         list.add(new Employee(104, "Abhimanyu", "Male", "Account", 70000.00, 22 ));
@@ -104,13 +102,11 @@ public class Java8Code {
         //15. Sort the array value and print in ascending order
         Integer[] array = {33,86,23,65,50};
 
-
         System.out.println();
         //16. Sort the array value print in descending order
 
         System.out.println();
         //17. Find max value in arrays
-
 
         System.out.println();
         //18. Find min value in arrays
@@ -118,43 +114,33 @@ public class Java8Code {
         System.out.println();
         //19. To find the First maximum number
 
-
         System.out.println();
         //20. To find second maximum number
-
 
         System.out.println();
         //21. To find third maximum number
 
-
         System.out.println();
         //22. Find the first minimum number in arrays
-
 
         System.out.println();
         //23. Find the second minimum number in arrays
 
-
         System.out.println();
         //24. Find the third minimum number in arrays
 
-
         System.out.println();
         //25. Find a name whose length is greater than 5.
-
 
         System.out.println();
         //26. Find the occurrences of each character in string
         String string = "abcdca";
 
-
         System.out.println();
         //27. Find the first repeating character
 
-
         System.out.println();
         //28. Find first Non-Repeating character
-
 
         System.out.println();
         //29. Find the occurrences of each word
@@ -164,14 +150,11 @@ public class Java8Code {
         System.out.println();
         //30. Display a duplicate element with count
 
-
         System.out.println();
         //31. Non-Duplicate element with count
 
-
         System.out.println();
         //32. Find a duplicate element in string
-
 
         System.out.println();
         //33. Find a distinct element in string
@@ -180,6 +163,7 @@ public class Java8Code {
         System.out.println();
         //34. Find the longest string in a String array     //reduce() function is a terminal operation in streams used to combine elements into a single result.
         String[] stringArray = {"Java", "SpringBoot", "Microservices", "Spring", "Hibernate"};
+
 
         System.out.println();
         //35. Find the smallest string in a String array
@@ -201,7 +185,6 @@ public class Java8Code {
 
         System.out.println();
         //39. Sort an employee based on salary if salary same then sort on based of name.
-
 
 
     }
