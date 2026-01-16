@@ -1,5 +1,4 @@
 import LatestInterviewQuestions.Employee;
-import com.logical.program.basic.A;
 
 import java.util.*;
 import java.util.function.Function;
@@ -21,41 +20,27 @@ public class Java8Code {
 
         // ## Remove duplicates from an array.
         Integer[] arr5 = {1, 2, 3, 2, 4, 1, 5};
-        Arrays.stream(arr5).distinct().forEach(e-> System.out.print(e+" "));
+
 
         System.out.println();
         //##. Write a code to move all zero elements to the end side using Java 8.
         Integer[] arrays = {1,0,1,0,0,1,0,1};
-        Arrays.stream(arrays).sorted((a,b)-> a == 0 ? 1 : -1).forEach(e-> System.out.print(e+" "));
-
-        System.out.println();
-        Integer[] array1 = Stream.concat(Arrays.stream(arrays).filter(e -> e != 0),
-                Arrays.stream(arrays).filter(e -> e == 0)).toArray(Integer[]::new);
-        Arrays.stream(array1).forEach(e-> System.out.print(e+" "));
 
         System.out.println();
         //##. Find the employee with the highest salary
-        list.stream().max(Comparator.comparingDouble(Employee::getSalary)).ifPresent(System.out::println);
 
         System.out.println();
         //##. Find the top 4 employees with the highest salary
-        List<Employee> list3 = list.stream().sorted(Comparator.comparingDouble(Employee::getSalary).reversed()).limit(4).toList();
-        list3.forEach(e-> System.out.println(e.getName()+" - "+e.getSalary()));
+
 
         System.out.println();
         //##. Find the employees who are getting the 2nd highest salary
-        List<Employee> list4 = list.stream().sorted(Comparator.comparingDouble(Employee::getSalary).reversed()).limit(2).skip(1).toList();
-        list4.forEach(e-> System.out.println(e.getName()+" - "+e.getSalary()));
 
         System.out.println();
         //1. Sort employee based on salary
-        List<Employee> list5 = list.stream().sorted(Comparator.comparingDouble(Employee::getSalary).reversed()).toList();
-        list5.forEach(e-> System.out.println(e.getName()+" - "+e.getSalary()));
 
         System.out.println();
         //2. Sort employee based on name
-        List<Employee> list6 = list.stream().sorted(Comparator.comparing(Employee::getName)).toList();
-        list6.forEach(e-> System.out.println(e.getName()));
 
         System.out.println();
         //3. Count the total number of employees
@@ -144,8 +129,6 @@ public class Java8Code {
         System.out.println();
         //26. Find the occurrences of each character in string
         String string = "abcdca";
-        LinkedHashMap<String, Long> collect1 = Arrays.stream(string.split("")).collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()));
-        collect1.forEach((k,v)-> System.out.println(k+" : "+v));
 
         System.out.println();
         //27. Find the first repeating character
@@ -160,12 +143,6 @@ public class Java8Code {
 
         System.out.println();
         //30. Display a duplicate element with count
-        Map<String, Long> collect = Arrays.stream(string.split(""))
-                .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
-                .entrySet().stream()
-                .filter(e -> e.getValue() > 1)
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-        collect.forEach((k,v)-> System.out.println(k+" - "+v));
 
 
         System.out.println();
@@ -174,12 +151,6 @@ public class Java8Code {
 
         System.out.println();
         //32. Find a duplicate element in string
-        List<String> list8 = Arrays.stream(string.split(""))
-                .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
-                .entrySet().stream()
-                .filter(e -> e.getValue() > 1)
-                .map(Map.Entry::getKey).toList();
-        list8.forEach(e-> System.out.print(e+" "));
 
         System.out.println();
         //33. Find a distinct element in string
@@ -210,8 +181,7 @@ public class Java8Code {
 
         System.out.println();
         //39. Sort an employee based on salary if salary same then sort on based of name.
-        List<Employee> list7 = list.stream().sorted(Comparator.comparingDouble(Employee::getSalary).thenComparing(Employee::getName)).toList();
-        list7.forEach(e-> System.out.println(e.getName()+" - "+e.getSalary()));
+
 
     }
 
