@@ -100,7 +100,7 @@ public class Jdk8EmployeeClassExample {
         System.out.println();
         //6. Find avg,max,min,sum,count salary of employee
         DoubleSummaryStatistics stats = list.stream()
-                .collect(Collectors.summarizingDouble(LatestInterviewQuestions.Employee::getSalary));
+                .collect(Collectors.summarizingDouble(Employee::getSalary));
         System.out.println("Average: "+stats.getAverage());
         System.out.println("Max: "+stats.getMax());
         System.out.println("Min: "+stats.getMin());
@@ -109,20 +109,20 @@ public class Jdk8EmployeeClassExample {
 
         System.out.println();
         //7. Find the name of all employee
-        list.stream().map(LatestInterviewQuestions.Employee::getName).forEach(System.out::println);
+        list.stream().map(Employee::getName).forEach(System.out::println);
 
         System.out.println();
         //8. Find the distinct name of employee
-        list.stream().map(LatestInterviewQuestions.Employee::getName).distinct().forEach(System.out::println);
+        list.stream().map(Employee::getName).distinct().forEach(System.out::println);
 
         System.out.println();
         //9. Get employee name whose employee id is greater than 102
-        list.stream().filter(e -> e.getId() > 102).map(LatestInterviewQuestions.Employee::getName)
+        list.stream().filter(e -> e.getId() > 102).map(Employee::getName)
                 .forEach(System.out::println);
 
         System.out.println();
         //10. Find an employee name whose age is less than 40
-        list.stream().filter(e ->e.getAge() < 40).map(LatestInterviewQuestions.Employee::getName)
+        list.stream().filter(e ->e.getAge() < 40).map(Employee::getName)
                 .forEach(System.out::println);
 
         System.out.println();
@@ -143,13 +143,13 @@ public class Jdk8EmployeeClassExample {
 
         System.out.println();
         //13. Display name start with 'S'
-        list.stream().filter(e->e.getName().startsWith("S")).map(LatestInterviewQuestions.Employee::getName)
+        list.stream().filter(e->e.getName().startsWith("S")).map(Employee::getName)
                 .forEach(System.out::println);
 
         System.out.println();
         //14. Display name starts with 'A' and the age is greater than 40
         list.stream().filter(e->e.getName().startsWith("A") && e.getAge()>40)
-                .map(LatestInterviewQuestions.Employee::getName).forEach(System.out::println);
+                .map(Employee::getName).forEach(System.out::println);
 
         System.out.println();
         //15. Sort the array value and print in ascending order
@@ -177,12 +177,12 @@ public class Jdk8EmployeeClassExample {
 
         System.out.println();
         //20. To find second maximum number
-        Optional<Integer> secondMax = Arrays.stream(array).sorted(Comparator.reverseOrder()).limit(2).skip(1).findFirst();
+        Optional<Integer> secondMax = Arrays.stream(array).sorted(Comparator.reverseOrder()).skip(1).findFirst();
         secondMax.ifPresent(f-> System.out.print("Second maximum value: "+f));
 
         System.out.println();
         //21. To find third maximum number
-        Optional<Integer> thirdMax = Arrays.stream(array).sorted(Comparator.reverseOrder()).limit(3).skip(2).findFirst();
+        Optional<Integer> thirdMax = Arrays.stream(array).sorted(Comparator.reverseOrder()).skip(2).findFirst();
         thirdMax.ifPresent(fo-> System.out.print("Third maximum value: "+fo));
 
         System.out.println();
@@ -202,7 +202,7 @@ public class Jdk8EmployeeClassExample {
 
         System.out.println();
         //25. Find a name whose length is greater than 5.
-        List<String> list3 = list.stream().map(LatestInterviewQuestions.Employee::getName).filter(e -> e.length() > 5).toList();
+        List<String> list3 = list.stream().map(Employee::getName).filter(e -> e.length() > 5).toList();
         list3.forEach(System.out::println);
 
         System.out.println();
@@ -218,7 +218,8 @@ public class Jdk8EmployeeClassExample {
         String key = Arrays.stream(string.split(""))
                 .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
                 .entrySet().stream()
-                .filter(e -> e.getValue() > 1).findFirst()
+                .filter(e -> e.getValue() > 1)
+                .findFirst()
                 .orElseThrow().getKey();
         System.out.println(key);
 
@@ -260,10 +261,10 @@ public class Jdk8EmployeeClassExample {
         System.out.println();
         //32. Find a duplicate element in string
         List<String> collect4 = Arrays.stream(string.split(""))
-                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
                 .entrySet().stream()
                 .filter(e -> e.getValue() > 1)
-                .map(Map.Entry::getKey).toList();
+                .map(Map.Entry::getKey).collect(Collectors.toList());
         collect4.forEach(e-> System.out.print(e+" "));
 
         System.out.println();
@@ -277,11 +278,19 @@ public class Jdk8EmployeeClassExample {
         System.out.println(long_s);
         System.out.println(long_s.length());
 
+        Arrays.stream(stringArray)
+                .max(Comparator.comparingInt(String::length))
+                .ifPresent(System.out::println);
+
         System.out.println();
         //35. Find the smallest string in a String array
         String smallestString = Arrays.stream(stringArray).reduce((s1,s2) -> s1.length() < s2.length() ? s1 : s2).get();
         System.out.println(smallestString);
         System.out.println(smallestString.length());
+
+        Arrays.stream(stringArray)
+                .min(Comparator.comparingInt(String::length))
+                .ifPresent(System.out::println);
 
         System.out.println();
         //36. Write a program to find elements from arrays who start with 1.
@@ -294,6 +303,9 @@ public class Jdk8EmployeeClassExample {
         String res = String.join(" | ", strings);
         System.out.println(res);
 
+        String res1 = strings.stream().collect(Collectors.joining(" "));
+        System.out.println(res1);
+
         System.out.println();
         //38. Display fruits/brand and its count
         List<String> fruits = Arrays.asList("banana", "apple", "samsung", "motorola", "apple", "samsung");
@@ -302,7 +314,7 @@ public class Jdk8EmployeeClassExample {
 
         System.out.println();
         //39. Sort an employee based on salary if salary same then sort on based of name
-        list.stream().sorted(Comparator.comparing(LatestInterviewQuestions.Employee::getSalary).thenComparing(Employee::getName))
+        list.stream().sorted(Comparator.comparing(Employee::getSalary).thenComparing(Employee::getName))
                 .collect(Collectors.toList()).forEach(System.out::println);
 
 

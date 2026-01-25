@@ -81,7 +81,7 @@ public class Java8CodePractice {
         //4. Count the total number of employees based on department/name.
         Map<String, Long> mapVal = list.stream()
                 .collect(Collectors.groupingBy(Employee::getDepartment, Collectors.counting()));
-        System.out.println(mapVal);
+        mapVal.forEach((dept, counting)->System.out.println(dept+" - "+counting));
 
         System.out.println();
         //5. Concatenate two lists using flatmap
